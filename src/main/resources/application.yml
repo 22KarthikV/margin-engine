@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: margin-engine
+  datasource:
+    url: jdbc:postgresql://localhost:5432/margin
+    username: margin
+    password: margin
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: margin-engine
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: com.karthikv.margin.domain.TradeEvent
+        spring.json.trusted.packages: com.karthikv.margin.domain
+        spring.json.use.type.headers: false
+
+margin:
+  rate: 0.10
+  default-collateral: 1000000
+  dedupe-window: 1000000
+  topic:
+    trades: trades

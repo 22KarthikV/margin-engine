@@ -1,0 +1,15 @@
+# Java / Maven
+target/
+*.class
+*.log
+.idea/
+*.iml
+.vscode/
+
+# Dashboard
+dashboard/node_modules/
+dashboard/dist/
+
+# OS
+.DS_Store
+Thumbs.db
